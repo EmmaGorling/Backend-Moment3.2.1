@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
-const { type } = require('os');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.DB_PORT || 3000;
+app.use(cors());
+app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect(process.env.DB_URL).then(() => {
@@ -43,6 +44,11 @@ const WorkexperienceSchema = new mongoose.Schema({
 });
 
 const Workexperience = mongoose.model('Workexperience', WorkexperienceSchema);
+
+// Routes
+app.get('/api', async (req, res) => {
+    res.json({message: 'Welcome to my API!'})
+})
 
 
 app.listen(port, () => {
