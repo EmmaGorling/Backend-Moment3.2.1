@@ -48,7 +48,17 @@ const Workexperience = mongoose.model('Workexperience', WorkexperienceSchema);
 // Routes
 app.get('/api', async (req, res) => {
     res.json({message: 'Welcome to my API!'})
-})
+});
+
+app.get('/workexperiences', async (req, res) => {
+    try {
+        let result = await Workexperience.find({});
+
+        return res.json(result);
+    } catch(error) {
+        return res.status(500).json(error);
+    }
+});
 
 
 app.listen(port, () => {
