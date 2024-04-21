@@ -78,7 +78,7 @@ app.post('/workexperiences', async (req, res) => {
 app.delete('/workexperiences/:id', async (req, res) => {
     let id = req.params.id;
     try {
-        let result = Workexperience.deleteOne({_id: ObjectId(id)});
+        let result = Workexperience.deleteOne({_id: id});
         return res.json(result);
     } catch (error) {
         return res.json(error);
