@@ -43,6 +43,7 @@ const WorkexperienceSchema = new mongoose.Schema({
     }
 });
 
+// Create a model
 const Workexperience = mongoose.model('Workexperience', WorkexperienceSchema);
 
 // Routes
@@ -50,6 +51,7 @@ app.get('/api', async (req, res) => {
     res.json({message: 'Welcome to my API!'})
 });
 
+// Get workexperiences
 app.get('/workexperiences', async (req, res) => {
     try {
         let result = await Workexperience.find({});
@@ -57,6 +59,17 @@ app.get('/workexperiences', async (req, res) => {
         return res.json(result);
     } catch(error) {
         return res.status(500).json(error);
+    }
+});
+
+// Add workexperinence
+app.post('/workexperiences', async (req, res) => {
+    try {
+        let result = Workexperience.create(req.body);
+
+        return res.json(result);
+    } catch (error) {
+        return res.status(400).json(error);
     }
 });
 
