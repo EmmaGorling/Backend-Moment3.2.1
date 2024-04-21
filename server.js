@@ -76,12 +76,13 @@ app.post('/workexperiences', async (req, res) => {
 
 // Delete workexperience
 app.delete('/workexperiences/:id', async (req, res) => {
-    let id = req.params.id;
     try {
-        let result = Workexperience.deleteOne({_id: id});
+        let result = await Workexperience.deleteOne({_id: req.params.id});
+
         return res.json(result);
+
     } catch (error) {
-        return res.json(error);
+        return res.status(500).json(error);
     }
 });
 
