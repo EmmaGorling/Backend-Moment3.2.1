@@ -44,7 +44,7 @@ const WorkexperienceSchema = new mongoose.Schema({
 });
 
 // Create a model
-const Workexperience = mongoose.model('Workexperience', WorkexperienceSchema);
+const Workexperience = mongoose.model('Workexperiences', WorkexperienceSchema);
 
 // Routes
 app.get('/api', async (req, res) => {
