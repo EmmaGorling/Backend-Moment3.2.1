@@ -66,7 +66,7 @@ app.get('/workexperiences', async (req, res) => {
 // Add workexperinence
 app.post('/workexperiences', async (req, res) => {
     try {
-        let result = Workexperience.create(req.body);
+        let result = await Workexperience.create(req.body);
 
         return res.json(result);
     } catch (error) {
@@ -83,6 +83,16 @@ app.delete('/workexperiences/:id', async (req, res) => {
 
     } catch (error) {
         return res.status(500).json(error);
+    }
+});
+
+// update a workexperience
+app.put('/workexperiences/:id', async (req, res) => {
+    try {
+        let result = await Workexperience.updateOne({_id: req.params.id}, {$set: req.body});
+        return res.json(result);
+    } catch (error) {
+        return res.json(error);
     }
 });
 
