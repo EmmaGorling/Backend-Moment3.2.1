@@ -92,7 +92,7 @@ app.put('/workexperiences/:id', async (req, res) => {
         let result = await Workexperience.updateOne({_id: req.params.id}, {$set: req.body});
         return res.json(result);
     } catch (error) {
-        return res.json(error);
+        return res.status(400).json(error);
     }
 });
 
